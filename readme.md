@@ -1,4 +1,4 @@
-# Title
+# Show Calendar
 
 For a fun project for practice and to learn React, I'm making a grid style calendar that includes live concerts / events / whatever else I come up with.
 
