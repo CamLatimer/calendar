@@ -1,0 +1,25 @@
+body{
+  font-family: 'Unica One', cursive;
+}
+.gridContain{
+  max-width:960px;
+  display: flex;
+  flex-wrap: wrap;
+}
+.cell{
+  border: 1px solid gray;
+  width: 14%;
+
+}
+.date{
+  height: 100px;
+}
+.monthToggle{
+  flex:1;
+}
+.monthAdd, .monthSub{
+  cursor: pointer;
+}
+@media screen and (min-width: 640px){
+
+}
