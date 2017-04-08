@@ -1,4 +1,5 @@
 import React from 'react';
+import SearchForm from './Search';
 import MonthDisplay from './MonthDisplay';
 import DayRow from './DayRow';
 import DateCell from './DateCell';
@@ -9,8 +10,18 @@ export default class Calendar extends React.Component {
 constructor(){
   super();
   this.state = new DateUtil;
+  this.state.searchValue = 'enter a location'; // init search input state to be passed down
   this.monthSet = this.state.monthIndex;
   this.yearSet = this.state.calYear;
+
+  // function that gets the value of the search box
+  this.grabVal = (val) => {
+    this.setState({searchValue: val})
+  }
+// setup AJAX here
+  this.apiReq = () => {
+    console.log(this.state.searchValue);
+  }
 
   this.handlers = {
     upMonth: () => {
@@ -61,7 +72,11 @@ constructor(){
   render(){
     this.gridMkr();
     return (
+      // Calendar state will have the value of the search box
+      // on submit, the search box will lift up state and setState for the Calendar
+      // use the value in an AJAX call
       <div>
+        <SearchForm searchVal={this.state.searchValue} call={this.apiReq} getVal={this.grabVal} />
         <MonthDisplay monthName={this.state.months[this.state.monthIndex]} calYear={this.state.calYear} handlers={this.handlers} />
         <DayRow />
         <div className={styles.gridContain}>
