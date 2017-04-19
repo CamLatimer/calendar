@@ -41,8 +41,8 @@ constructor(){
     }
     this.gridMkr = () => {
       return this.cellHolder.map((num) => {
+        
         let totalDays = this.state.getMonthDays(this.state.calYear, this.state.monthIndex);
-        // get day first Date of the month
         let startDate = new Date(this.state.calYear, this.state.monthIndex, 0);
         let firstDate = startDate.getDate();
         let firstDay = startDate.getDay() + 1;
