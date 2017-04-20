@@ -5,7 +5,7 @@ import DayRow from './DayRow';
 import DateCell from './DateCell';
 import DateUtil from '../utils/timeUtil';
 import Search from './Search';
-import getEventData from '../utils/Songkick';
+import { getEventData } from '../utils/Songkick';
 import styles from '../styles/calendar.scss';
 
 export default class Calendar extends React.Component {
@@ -17,11 +17,11 @@ constructor(){
     this.setState({searchValue: val});
   }
   this.triggerSearch = () => {
-    getEventData(this.state.searchValue).then((data) => {
-      this.setState({locationId: data})
+    let endDate = this.state.getMonthDays(this.state.calYear, this.state.monthIndex);
+    getEventData(this.state.searchValue, this.state.calYear, this.state.monthIndex, endDate).then((data) => {
+            this.setState({showTest: data[0].show})
     })
   }
-
   this.handlers = {
     upMonth: () => {
       if(this.state.monthIndex === 11){
@@ -29,6 +29,7 @@ constructor(){
         this.setState({calYear: this.state.calYear + 1})
       } else{
          this.setState({monthIndex: this.state.monthIndex + 1});
+         this.setState({searchValue: this.state.searchValue});
       }
     },
     downMonth: () => {
@@ -37,6 +38,7 @@ constructor(){
         this.setState({calYear: this.state.calYear - 1});
       } else {
       this.setState({monthIndex: this.state.monthIndex - 1})
+      this.triggerSearch();
       }
     },
     upYear: () => {
@@ -58,15 +60,23 @@ constructor(){
         let firstDay = startDate.getDay() + 1;
 
         if(num >= firstDay && num < totalDays + firstDay){
-          return <DateCell key={num} locationId={this.state.locationId} day={num + (1 - firstDay)}/>
+          return <DateCell key={num} showTest={this.state.showTest} day={num + (1 - firstDay)}/>
         } else{
           return <DateCell key={num} />
         }
       });
     }
 }
+componentDidUpdate(prevProps, prevState){
+  if(prevState.monthIndex !== this.state.monthIndex || prevState.calYear !== this.state.calYear){
+    let endDate = this.state.getMonthDays(this.state.calYear, this.state.monthIndex);
+    getEventData(this.state.searchValue, this.state.calYear, this.state.monthIndex, endDate).then((data) => {
+      this.setState({showTest: data[0].show})
+      console.log(data);
+    })
+  }
 
-
+}
   render(){
     return (
       <div>
