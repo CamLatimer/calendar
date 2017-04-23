@@ -14,9 +14,9 @@ function getEventData(area, year, month, endDate) {
     .then((response) => {
       return response.data.resultsPage.results.event.map(function(event){
         if((minDate !== maxDate) && (event.displayName.length > 25)){
-            return {show: event.displayName.substr(0, 25) + '...', uri: event.uri}
+            return {show: event.displayName.substr(0, 25) + '...', uri: event.uri, date: event.start.date.slice(-2)}
         } else{
-          return {show: event.displayName, uri: event.uri}
+          return {show: event.displayName, uri: event.uri, date: event.start.date.slice(-2)}
         }
       });
     })
