@@ -6,13 +6,14 @@ const webpack = require('webpack');
 const merge = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 const common = {
   entry: [
     './app/index.js'
   ],
   output: {
-    path: __dirname + '/public',
+    path: __dirname + '/docs',
     filename: '[name].js',
     sourceMapFilename: '[file].map'
   },
@@ -31,6 +32,9 @@ const common = {
       filename: 'index.html',
       inject: 'body'
     }),
+    new Dotenv({
+      path:'./.env'
+    })
   ]
 }
 
@@ -87,6 +91,4 @@ module.exports = function(env){
       devMode
     )
   }
-
-
 }
