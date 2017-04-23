@@ -2,7 +2,9 @@ body{
   font-family: 'Unica One', cursive;
 }
 .gridContain{
-  max-width:960px;
+  width:100%;
+  margin:auto;
+  text-align: center;
   display: flex;
   flex-wrap: wrap;
 }
@@ -12,7 +14,17 @@ body{
 
 }
 .date{
-  height: 100px;
+  text-align: left;
+  height: 150px;
+  overflow: auto;
+  ul{
+    padding-left: .8rem;
+    li{
+      list-style-type: none;
+      font-size: .8rem;
+      padding-bottom:.7rem;
+    }
+  }
 }
 .monthToggle{
   flex:1;
