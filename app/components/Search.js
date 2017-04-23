@@ -16,7 +16,7 @@ export default class SearchForm extends React.Component {
     return (
       <form onSubmit={this.handleSubmit}>
         Search:
-        <input type="text" onChange={this.handleChange} />
+        <input type="text" onChange={this.handleChange} placeholder="enter location"/>
         <input type="submit" value="Submit" />
       </form>
     )

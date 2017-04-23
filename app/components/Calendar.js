@@ -19,7 +19,7 @@ constructor(){
   this.triggerSearch = () => {
     let endDate = this.state.getMonthDays(this.state.calYear, this.state.monthIndex);
     getEventData(this.state.searchValue, this.state.calYear, this.state.monthIndex, endDate).then((data) => {
-            this.setState({showTest: data[0].show})
+            this.setState({shows: data});
     })
   }
   this.handlers = {
@@ -53,29 +53,28 @@ constructor(){
       this.cellHolder.push(i);
     }
     this.gridMkr = () => {
-      return this.cellHolder.map((num) => {
-        let totalDays = this.state.getMonthDays(this.state.calYear, this.state.monthIndex);
-        let startDate = new Date(this.state.calYear, this.state.monthIndex, 0);
-        let firstDate = startDate.getDate();
-        let firstDay = startDate.getDay() + 1;
+        return this.cellHolder.map((num, index) => {
+          let totalDays = this.state.getMonthDays(this.state.calYear, this.state.monthIndex);
+          let startDate = new Date(this.state.calYear, this.state.monthIndex, 0);
+          let firstDate = startDate.getDate();
+          let firstDay = startDate.getDay() + 1;
 
-        if(num >= firstDay && num < totalDays + firstDay){
-          return <DateCell key={num} showTest={this.state.showTest} day={num + (1 - firstDay)}/>
-        } else{
-          return <DateCell key={num} />
-        }
-      });
-    }
+          if(num >= firstDay && num < totalDays + firstDay){
+            return <DateCell key={num} shows={this.state.shows} day={num + (1 - firstDay)}/>
+          } else{
+            return <DateCell key={num} />
+          }
+        });
+      }
 }
+
 componentDidUpdate(prevProps, prevState){
   if(prevState.monthIndex !== this.state.monthIndex || prevState.calYear !== this.state.calYear){
     let endDate = this.state.getMonthDays(this.state.calYear, this.state.monthIndex);
     getEventData(this.state.searchValue, this.state.calYear, this.state.monthIndex, endDate).then((data) => {
-      this.setState({showTest: data[0].show})
-      console.log(data);
+      this.setState({shows: data})
     })
   }
-
 }
   render(){
     return (
