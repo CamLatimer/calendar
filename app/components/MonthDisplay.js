@@ -3,22 +3,28 @@ import styles from '../styles/calendar.scss'
 
 export default (props) => {
   return (
-    <div className={styles.row} >
-      <div className={styles.col}>
-        <h1 className={styles.monthName}>{props.monthName} &nbsp;&nbsp;&nbsp;
-          <button className={styles.monthSub} onClick={props.handlers.downMonth}>- </button>  <button className={styles.monthAdd}
-            onClick={
-              () => {
-                props.handlers.upMonth();
-              }
-            }> +  </button>
-        </h1>
-        <h1>
-          {props.calYear} &nbsp;
-           <button className={styles.yearSub} onClick={props.handlers.downYear}>- </button>  <button className={styles.yearAdd} onClick={props.handlers.upYear}> +  </button>
-        </h1>
+    <div>
+      <div>
+        <h1 className={styles.monthTitle}>{props.monthName}</h1>
+        <div className={styles.buttonHolder}>
+          <button className={styles.monthSub} onClick={props.handlers.downMonth}>
+            &#8592;
+          </button>
+          <button className={styles.monthAdd}    onClick={props.handlers.upMonth}>
+            &rarr;
+          </button>
+        </div>
+        <h1 className={styles.yearTitle}>{props.calYear}</h1>
+        <div className={styles.buttonHolder}>
+           <button className={styles.yearSub} onClick={props.handlers.downYear}>
+             &#8592;
+           </button>
+           <button className={styles.yearAdd} onClick={props.handlers.upYear}>
+             &rarr;
+           </button>
+        </div>
       </div>
-      <div className={styles.col}>
+      <div>
         <h1 className={styles.monthToggle}>
 
 

@@ -3,7 +3,7 @@ import styles from '../styles/calendar.scss'
 
 export default () => {
   return (
-    <div className={styles.gridContain}>
+    <div className={styles.gridContain + ' ' + styles.dayRow}>
       <div className={[styles.col, styles.cell].join(' ')}>Sunday</div>
       <div className={[styles.col, styles.cell].join(' ')}>Monday</div>
       <div className={[styles.col, styles.cell].join(' ')}>Tuesday</div>
