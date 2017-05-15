@@ -2,7 +2,7 @@
 
 For a fun project for practice and to learn React, I'm making a grid style calendar that includes live concerts / events / whatever else I come up with.
 
-Right now, I have a working calendar that let's a user click to change the month or year to fill in the month's days.
+Right now, I have a working calendar that let's a user click to change the month or year to fill in the month's days.  View it here: https://camlatimer.github.io/showCal/
 
 Below are the features / user stories I've come up with so far.  I'll try to flesh them out as I get better clarity and details on what needs to be done.  
 
