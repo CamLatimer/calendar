@@ -46,7 +46,9 @@ constructor(){
         let firstDay = startDate.getDay() + 1;
 
         if(num >= firstDay && num < totalDays + firstDay){
-          return <DateCell key={num} day={num + (1 - firstDay)}/>
+          let dateNumber = num + (1 - firstDay)
+          let dayOfWeek = new Date(this.state.calYear, this.state.monthIndex, dateNumber );
+          return <DateCell key={num} day={dateNumber} weekday={dayOfWeek}/>
         } else{
           return <DateCell key={num} />
         }
